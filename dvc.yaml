@@ -1,0 +1,24 @@
+stages:
+  prepare:
+    cmd: python src/data_prep.py
+    deps:
+      - src/data_prep.py
+      - data/raw/dataset.csv
+    outs:
+      - data/processed/train.csv
+  train:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+      - params.yaml
+    outs:
+      - models/catboost_model.bin
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/catboost_model.bin
+    metrics:
+      - metrics.json:
+          cache: false
