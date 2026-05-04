@@ -1,0 +1,54 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/data_prep.py
+    deps:
+    - path: data/raw/dataset.csv
+      hash: md5
+      md5: d99b05a706ec20f3728664e8af1ca771
+      size: 40653
+    - path: src/data_prep.py
+      hash: md5
+      md5: 6c3ada489199e447dd3e86839885bf93
+      size: 185
+    outs:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 522c09a134a4fa393377b61027b2fb2e
+      size: 42471
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 522c09a134a4fa393377b61027b2fb2e
+      size: 42471
+    - path: params.yaml
+      hash: md5
+      md5: 34191bda477019820ec6e4b9aa360d99
+      size: 60
+    - path: src/train.py
+      hash: md5
+      md5: 2c457c07bc46eb4b16eac37d9990cead
+      size: 453
+    outs:
+    - path: models/catboost_model.bin
+      hash: md5
+      md5: fabe24e89ad4a8e5c939be2865c84442
+      size: 205832
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: models/catboost_model.bin
+      hash: md5
+      md5: fabe24e89ad4a8e5c939be2865c84442
+      size: 205832
+    - path: src/evaluate.py
+      hash: md5
+      md5: 20581a23bcdf7f8394ef460eb66f87cd
+      size: 486
+    outs:
+    - path: metrics.json
+      hash: md5
+      md5: a87375184203d9e4176d3fc1f5e94e16
+      size: 36
