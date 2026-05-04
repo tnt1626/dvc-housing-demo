@@ -25,8 +25,8 @@ stages:
       size: 42471
     - path: params.yaml
       hash: md5
-      md5: e7f2a3f0a1653d6fed8be2900c42f156
-      size: 58
+      md5: 34191bda477019820ec6e4b9aa360d99
+      size: 60
     - path: src/train.py
       hash: md5
       md5: 2c457c07bc46eb4b16eac37d9990cead
@@ -34,15 +34,15 @@ stages:
     outs:
     - path: models/catboost_model.bin
       hash: md5
-      md5: 7630eb3dbb767324627871e940a2a41f
-      size: 56896
+      md5: fabe24e89ad4a8e5c939be2865c84442
+      size: 205832
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: models/catboost_model.bin
       hash: md5
-      md5: 7630eb3dbb767324627871e940a2a41f
-      size: 56896
+      md5: fabe24e89ad4a8e5c939be2865c84442
+      size: 205832
     - path: src/evaluate.py
       hash: md5
       md5: 20581a23bcdf7f8394ef460eb66f87cd
@@ -50,5 +50,5 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: d48c3f5d1214eb074345a26f9c48777f
-      size: 34
+      md5: a87375184203d9e4176d3fc1f5e94e16
+      size: 36

@@ -1,4 +1,4 @@
 [core]
     remote = my_remote
 ['remote "my_remote"']
-    url = ../../tmp/dvc-remote-storage
+    url = E:\HCMUS\Intro2DS\tmp\dvc-remote-storage
